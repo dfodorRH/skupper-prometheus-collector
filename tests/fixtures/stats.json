@@ -1,0 +1,206 @@
+{
+  "sites": [
+    {
+      "site_name": "cluster3-skupper-vault",
+      "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061",
+      "version": "1.2.0",
+      "connected": ["e0f79577-bf92-437f-85e9-ab66ce071cf1"],
+      "namespace": "skupper-vault",
+      "url": "",
+      "edge": true,
+      "gateway": false
+    },
+    {
+      "site_name": "cluster1-skupper-vault-net",
+      "site_id": "e0f79577-bf92-437f-85e9-ab66ce071cf1",
+      "version": "1.2.0",
+      "connected": [],
+      "namespace": "skupper-vault-net",
+      "url": "skupper-inter-router-skupper-vault-net.cluster1.com",
+      "edge": false,
+      "gateway": false
+    }
+  ],
+  "services": [
+    {
+      "address": "vault",
+      "protocol": "http",
+      "targets": [
+        {
+          "name": "vault-cluster3-5657854bcb-jxvgx",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-7ngnv",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-bdqtt",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-bdqtt",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-7ngnv",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-jxvgx",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-jxvgx",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-7ngnv",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        },
+        {
+          "name": "vault-cluster3-5657854bcb-bdqtt",
+          "target": "vault",
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061"
+        }
+      ],
+      "requests_received": [
+        {
+          "site_id": "e0f79577-bf92-437f-85e9-ab66ce071cf1",
+          "by_client": {
+            "10.128.14.15": {
+              "requests": 530,
+              "bytes_in": 58300,
+              "bytes_out": 97520,
+              "details": {
+                "GET:200": 530
+              },
+              "latency_max": 48,
+              "by_handling_site": {
+                "0f32f434-c47c-47d5-aad5-c45004d32061": {
+                  "requests": 530,
+                  "bytes_in": 58300,
+                  "bytes_out": 97520,
+                  "details": {
+                    "GET:200": 530
+                  },
+                  "latency_max": 48
+                }
+              }
+            },
+            "10.130.8.13": {
+              "requests": 169223,
+              "bytes_in": 18614530,
+              "bytes_out": 31135871,
+              "details": {
+                "GET:200": 169214,
+                "GET:503": 9
+              },
+              "latency_max": 226,
+              "by_handling_site": {
+                "": {
+                  "requests": 9,
+                  "bytes_in": 990,
+                  "bytes_out": 495,
+                  "details": {
+                    "GET:503": 9
+                  },
+                  "latency_max": 1
+                },
+                "0f32f434-c47c-47d5-aad5-c45004d32061": {
+                  "requests": 169214,
+                  "bytes_in": 18613540,
+                  "bytes_out": 31135376,
+                  "details": {
+                    "GET:200": 169214
+                  },
+                  "latency_max": 226
+                }
+              }
+            }
+          }
+        }
+      ],
+      "requests_handled": [
+        {
+          "site_id": "0f32f434-c47c-47d5-aad5-c45004d32061",
+          "by_server": {
+            "10.128.2.15": {
+              "requests": 14,
+              "bytes_in": 2576,
+              "bytes_out": 1540,
+              "details": {
+                "GET:200": 14
+              },
+              "latency_max": 2
+            },
+            "10.128.6.28": {
+              "requests": 264,
+              "bytes_in": 48576,
+              "bytes_out": 29040,
+              "details": {
+                "GET:200": 264
+              },
+              "latency_max": 11
+            },
+            "10.129.2.30": {
+              "requests": 45,
+              "bytes_in": 8280,
+              "bytes_out": 4950,
+              "details": {
+                "GET:200": 45
+              },
+              "latency_max": 12
+            },
+            "vault-cluster3-5657854bcb-7ngnv": {
+              "requests": 49851,
+              "bytes_in": 9172584,
+              "bytes_out": 5483610,
+              "details": {
+                "GET:200": 49851
+              },
+              "latency_max": 81
+            },
+            "vault-cluster3-5657854bcb-bdqtt": {
+              "requests": 96194,
+              "bytes_in": 17699696,
+              "bytes_out": 10581340,
+              "details": {
+                "GET:200": 96194
+              },
+              "latency_max": 64
+            },
+            "vault-cluster3-5657854bcb-jxvgx": {
+              "requests": 51480,
+              "bytes_in": 9472320,
+              "bytes_out": 5662800,
+              "details": {
+                "GET:200": 51480
+              },
+              "latency_max": 65
+            }
+          },
+          "by_originating_site": {
+            "e0f79577-bf92-437f-85e9-ab66ce071cf1": {
+              "requests": 197848,
+              "bytes_in": 36404032,
+              "bytes_out": 21763280,
+              "details": {
+                "GET:200": 197848
+              },
+              "latency_max": 81
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
