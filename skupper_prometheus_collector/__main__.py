@@ -2,6 +2,9 @@ import logging
 import time
 
 from prometheus_client import (
+    GC_COLLECTOR,
+    PLATFORM_COLLECTOR,
+    PROCESS_COLLECTOR,
     REGISTRY,
     start_http_server,
 )
@@ -28,7 +31,10 @@ def app() -> None:
             timeout=settings.service_controller_timeout,
         )
     )
-    # TODO disable standard prometheus metrics
+    # disable standard prometheus metrics
+    REGISTRY.unregister(GC_COLLECTOR)
+    REGISTRY.unregister(PLATFORM_COLLECTOR)
+    REGISTRY.unregister(PROCESS_COLLECTOR)
     start_http_server(port=settings.port)
     while True:
         time.sleep(5)
