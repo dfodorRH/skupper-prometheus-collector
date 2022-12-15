@@ -13,10 +13,12 @@ from prometheus_client.core import (
     InfoMetricFamily,
 )
 
+log = logging.getLogger(__name__)
+
 
 def service_controller_stats(service_controller: str, timeout: int) -> dict[str, Any]:
     try:
-        logging.debug(f"Fetching data from service controller {service_controller}")
+        log.debug(f"Fetching data from service controller {service_controller}")
         response = requests.get(service_controller, timeout=timeout)
         response.raise_for_status()
     except requests.exceptions.RequestException as exc:
@@ -34,17 +36,19 @@ class SkupperCollector:
         self, stats: Mapping[str, list[Mapping[str, Any]]]
     ) -> Generator[Metric, None, None]:
         """Compute prometheus metrics based on service-controller stats."""
+        log.debug("Compiling metrics")
         # site metrics
         skupper_spec = InfoMetricFamily(
-            name="skupper_spec",
+            name="skupper_site_spec",
             documentation="Skupper version and site information",
             labels=["site_name", "namespace"],
         )
         skupper_outgoing_connections = GaugeMetricFamily(
-            name="skupper_outgoing_connections",
+            name="skupper_site_outgoing_connections",
             documentation="Number of outgoing site connections",
             labels=["site_name", "namespace"],
         )
+        log.debug(f"Compiling site metrics for {len(stats['sites'])} sites")
         for site in stats["sites"]:
             skupper_spec.add_metric(
                 [site["site_name"], site["namespace"]],
@@ -59,6 +63,8 @@ class SkupperCollector:
             skupper_outgoing_connections.add_metric(
                 [site["site_name"], site["namespace"]], len(site["connected"])
             )
+
+        log.debug("Compiling service metrics")
         # service metrics
         service_spec = InfoMetricFamily(
             name="skupper_service_spec", documentation="Service information"

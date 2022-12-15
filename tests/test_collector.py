@@ -22,9 +22,9 @@ def test_skupper_collector_compile_metrics() -> None:
     skupper_collector = collector.SkupperCollector("http://service-controller:1234", 1)
     metrics = list(skupper_collector.compile_metrics(stats))
     assert len(metrics) == 4
-    assert metrics[0].name == "skupper_spec"
+    assert metrics[0].name == "skupper_site_spec"
     assert len(metrics[0].samples) == 2
-    assert metrics[1].name == "skupper_outgoing_connections"
+    assert metrics[1].name == "skupper_site_outgoing_connections"
     assert len(metrics[1].samples) == 2
     assert metrics[2].name == "skupper_service_spec"
     assert len(metrics[2].samples) == 1

@@ -1,3 +1,4 @@
+import logging
 import time
 
 from prometheus_client import (
@@ -8,8 +9,18 @@ from prometheus_client import (
 from .collector import SkupperCollector
 from .config import settings
 
+log = logging.getLogger(__name__)
 
-def app():
+
+def config_logging() -> None:
+
+    logging.basicConfig(
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+        level=settings.log_level.upper(),
+    )
+
+
+def app() -> None:
     """Main entry point for the application script"""
     REGISTRY.register(
         SkupperCollector(
@@ -24,4 +35,6 @@ def app():
 
 
 if __name__ == "__main__":
+    config_logging()
+    log.info("Starting skupper-prometheus-collector")
     app()

@@ -1,6 +1,6 @@
 from pydantic import (
-    BaseSettings,
     AnyHttpUrl,
+    BaseSettings,
 )
 
 
@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     )
     service_controller_timeout: int = 5
     port: int = 8000
+    log_level: str = "INFO"
 
     class Config:
         env_prefix = "spc_"
