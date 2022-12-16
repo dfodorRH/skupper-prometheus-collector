@@ -12,6 +12,7 @@ from prometheus_client.core import (
     GaugeMetricFamily,
     InfoMetricFamily,
 )
+from prometheus_client.registry import Collector
 
 log = logging.getLogger(__name__)
 
@@ -27,7 +28,7 @@ def service_controller_stats(service_controller: str, timeout: int) -> dict[str,
     return response.json()
 
 
-class SkupperCollector:
+class SkupperCollector(Collector):
     def __init__(self, service_controller: str, timeout: int) -> None:
         self.service_controller = service_controller
         self.timeout = timeout

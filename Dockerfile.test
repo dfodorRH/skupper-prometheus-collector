@@ -1,0 +1,9 @@
+FROM registry.access.redhat.com/ubi9/python-39
+ARG POETRY_VERSION
+
+RUN pip install --upgrade pip && \
+    pip install poetry==$POETRY_VERSION
+COPY --chown=1000 . .
+RUN poetry install
+USER 1000
+RUN make test
